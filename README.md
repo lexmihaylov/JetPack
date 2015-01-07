@@ -118,3 +118,16 @@ jPack.calc.rectIntersect({
     height: 100
 }) // => Object {x: 50, y: 50, width: 50, height: 50}
 ```
+
+#### jPack.calc.pointOfCircle (point, radius, angInDeg)
+
+Calculate a point of a cicle
+ * `point` -  an object containing the circles centerPoint
+ * `radius` - the circles radius value
+ * `angInDeg` - value of offset angle in degrees
+
+__Example:__
+
+```javascript
+jPack.calc.pointOfCircle({x: 0, y: 0}, 100, 45) // => Object {x: 70.71067811865476, y: 70.71067811865474}
+```
