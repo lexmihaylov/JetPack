@@ -1,19 +1,19 @@
 
-/**
+/*!
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2015 Alexander Mihaylov
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,11 +21,11 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
 
-/**
+/*!
  * =========================================================================== *
  * Collection of reusable tools                                                *
  * @author Alexander Mihaylov <lex.mihaylov@gmail.com>                         *
@@ -34,28 +34,37 @@
  */
 
 /**
- * jpack wrapper
- * @param {window} win
- * @returns {undefined}
+ * factory
  */
-(function(win) {
-    win.jPack = win.jPack || {};
+(function(root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define([], function() {
+            return factory(root);
+        });
+    } else if (typeof exports !== 'undefined') {
+        exports.jPack = factory(root);
+    } else {
+        root.jPack = factory(root);
+    }
+})(window, function(win) {
     
+    var jpack = {};
+
     /**
      * @var {boolean} whether the current browser is mobile or not
      */
     var browserIsMobile = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i).test(navigator.userAgent.toLowerCase());
-    
-    
+
+
     /**
      * Library version
      */
-    win.jPack.VERSION = '0.1.0';
+    jpack.VERSION = '0.1.0';
 
     /**
      * Contains additional math methods
      */
-    win.jPack.calc = {
+    jpack.calc = {
         /**
          * Converts radians to degrees
          * @param {Number} radians
@@ -237,43 +246,112 @@
             return ctx.measureText(text);
         }
     };
-    
+
     /**
      * Checks browser capabilities
      */
-    win.jPack.browser = {
+    jpack.browser = {
         /**
          * whether the current browser is mobile or not
-         * 
+         *
          * returns {boolean}
          */
         isMobile: function() {
             return browserIsMobile;
         },
-        
+
         /**
          * whether the browser has falsh plugin intalled/enabled
-         * 
+         *
          * @returns {boolean}
          */
         hasFlashEnabled: function() {
             var hasFlash = false;
             try {
                 hasFlash = Boolean(new ActiveXObject('ShockwaveFlash.ShockwaveFlash'));
-            } catch(exception) {
+            }
+            catch (exception) {
                 hasFlash = ('undefined' != typeof navigator.mimeTypes['application/x-shockwave-flash']);
             }
-            
+
             return hasFlash;
+        },
+
+        /**
+         * Holds functions that help you managa cookies
+         */
+        cookie: {
+
+            /**
+             * Create a cookie on the clients browser
+             *
+             * @param {String} name
+             * @param {String} value
+             * @param {Object} opt
+             * opt.expires Expiration time in seconds
+             * opt.path Default value is /
+             * opt.domain If domain is not set then the current domain
+             * will be set to cookie
+             */
+            set: function(name, value, opt) {
+                value = escape(value);
+                if (!opt)
+                    opt = {};
+
+                if (opt.expires) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + parseInt(opt.expires * 1000));
+                    value = value + ';expires=' + date.toGMTString();
+                }
+
+                if (opt.path) {
+                    value = value + ';path=' + opt.path;
+                }
+                else {
+                    value = value + ';path=/';
+                }
+
+                if (opt.domain) {
+                    value = value + ';domain=' + opt.domain;
+                }
+
+                document.cookie = name + "=" + value + ";";
+            },
+
+            /**
+             * Retrieve a cookie's value
+             *
+             * @param {string} name
+             */
+            get: function(name) {
+                var expr = new RegExp(name + '=(.*?)(;|$)', 'g');
+                var matches = expr.exec(document.cookie);
+                if (!matches || !matches[1]) {
+                    return null;
+                }
+                return matches[1];
+            },
+
+            /**
+             * Deletes cookie
+             *
+             * @param {string} name
+             * @return {mixed} the value of the cookie or null if the cookie does not exist
+             */
+            destroy: function(name) {
+                this.set(name, null, {
+                    expires: -1
+                });
+            }
         }
-    }
+    };
 
     /**
      * Creates an animation object using requestAnimationFrame or setTimeout
      * @class jpack.Animation
      * @constructor
      */
-    win.jPack.Animation = function(handler) {
+    jpack.Animation = function(handler) {
         this.animationFrame = win.requestAnimationFrame ||
             win.mozRequestAnimationFrame ||
             win.webkitRequestAnimationFrame ||
@@ -291,7 +369,7 @@
     /**
      * public methods
      */
-    win.jPack.Animation.prototype = {
+    jpack.Animation.prototype = {
         /**
          * Start the animation loop
          * @returns {undefined}
@@ -302,7 +380,7 @@
             if (!_this.isStarted) {
                 _this.isStarted = true;
 
-                var loopFn = function () {
+                var loopFn = function() {
                     if (!_this.isDestroyed) {
                         if (!_this.isStopped) {
                             _this.handler.apply(_this, arguments);
@@ -341,7 +419,7 @@
      * @class jpackAsync
      * @constructor
      */
-    win.jPack.Async = function(handler) {
+    jpack.Async = function(handler) {
         this.asyncTask = win.requestAnimationFrame ||
             win.mozRequestAnimationFrame ||
             win.webkitRequestAnimationFrame ||
@@ -355,7 +433,7 @@
     /**
      * public methods
      */
-    win.jPack.Async.prototype = {
+    jpack.Async.prototype = {
         /**
          * Execute a task asyncroniously
          * @returns {undefined}
@@ -367,4 +445,6 @@
             });
         }
     };
-})(window);
+    
+    return jpack;
+});
