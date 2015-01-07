@@ -1,2 +1,2 @@
 # JetPack
-Collection of reusable tools that will boost your development process
+Collection of reusable tools that extend javascript's capabilities.
