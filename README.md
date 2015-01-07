@@ -1,2 +1,14 @@
 # JetPack
-Collection of reusable tools that extend javascript's capabilities.
+JetPack is a compilation of methods that will make your life easyer. It includes:
+ * extension of the math api;
+ * easy access to browser functionality
+ 
+
+## Installation
+
+    bower install lexmihaylov/JetPack
+    
+## Api documentation
+
+
+ 
