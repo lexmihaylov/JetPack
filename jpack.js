@@ -115,7 +115,7 @@
          * @returns {Number}
          */
         floor: function(num, precision) {
-            if (!precision) precision = 0;
+            precision = precision || 0;
             var p = Math.pow(10, precision);
             return Math.floor(num * p) / p;
         },
@@ -127,7 +127,7 @@
          * @returns {Number}
          */
         ceil: function(num, precision) {
-            if (!precision) precision = 0;
+            precision = precision || 0;
             var p = Math.pow(10, precision);
             return Math.ceil(num * p) / p;
         },
