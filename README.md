@@ -35,6 +35,6 @@ __Example:__
 
 ```javascript
 jPack.calc.round (1.56777778, 2); // => 1.57
-jPack.calc.round (1.56777778); // => 2
+jPack.calc.round (1.56777778);    // => 2
 ```
 
