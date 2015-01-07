@@ -62,3 +62,59 @@ __Example:__
 jPack.calc.ceil (1.3333, 2); // => 1.34
 jPack.calc.ceil (1.3333);    // => 2
 ```
+
+#### jPack.calc.percentage (part, whole)
+
+Calculates the percentage value
+ * `part` - value of part
+ * `whole` - value of total
+
+__Example:__
+
+```javascript
+jPack.calc.percentage (1, 2); // => 50
+```
+
+#### jPack.calc.radToDeg (radians)
+
+Converts radians to degrees
+ * `radians` - angle value in radians
+
+__Example:__
+
+```javascript
+jPack.calc.radToDeg(Math.PI/2) // => 90
+```
+
+#### jPack.calc.degToRad (degrees)
+
+Converts degrees to radians
+ * `degrees` - angle value in degrees
+
+__Example:__
+
+```javascript
+jPack.calc.degToRad(90) // => 1.5707963267948966
+```
+
+#### jPack.calc.rectIntersect (rect1, rect2)
+
+Calculates the intersection between two rectangles and returns a new rectangle
+ * `rect1`
+ * `rect2`
+
+__Example:__
+
+```javascript
+jPack.calc.rectIntersect({
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 100
+}, {
+    x: 50,
+    y: 50,
+    width: 100,
+    height: 100
+}) // => Object {x: 50, y: 50, width: 50, height: 50}
+```

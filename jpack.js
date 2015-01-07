@@ -143,7 +143,7 @@
         },
 
         /**
-         * Calculates the intersection between to rectangles and returns a new rectangle
+         * Calculates the intersection between two rectangles and returns a new rectangle
          * containing the dimenssions of the intersected area
          * @param {Object} rect1
          * @param {Object} rect2
