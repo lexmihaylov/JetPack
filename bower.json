@@ -1,0 +1,12 @@
+
+{
+  "name": "JetPack",
+  "version": "0.1.0",
+  "description": "Collection of reusable tools for development process optimization.",
+  
+  "authors": [
+    "lexmihaylov"
+  ],
+  "license": "MIT",
+  "main": "jpack.js"
+}
