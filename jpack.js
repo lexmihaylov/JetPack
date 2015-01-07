@@ -42,6 +42,12 @@
     win.jPack = win.jPack || {};
     
     /**
+     * @var {boolean} whether the current browser is mobile or not
+     */
+    var browserIsMobile = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i).test(navigator.userAgent.toLowerCase());
+    
+    
+    /**
      * Library version
      */
     win.jPack.VERSION = '0.1.0';
@@ -231,6 +237,36 @@
             return ctx.measureText(text);
         }
     };
+    
+    /**
+     * Checks browser capabilities
+     */
+    win.jPack.browser = {
+        /**
+         * whether the current browser is mobile or not
+         * 
+         * returns {boolean}
+         */
+        isMobile: function() {
+            return browserIsMobile;
+        },
+        
+        /**
+         * whether the browser has falsh plugin intalled/enabled
+         * 
+         * @returns {boolean}
+         */
+        hasFlashEnabled: function() {
+            var hasFlash = false;
+            try {
+                hasFlash = Boolean(new ActiveXObject('ShockwaveFlash.ShockwaveFlash'));
+            } catch(exception) {
+                hasFlash = ('undefined' != typeof navigator.mimeTypes['application/x-shockwave-flash']);
+            }
+            
+            return hasFlash;
+        }
+    }
 
     /**
      * Creates an animation object using requestAnimationFrame or setTimeout
