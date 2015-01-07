@@ -235,7 +235,7 @@
         },
 
         /**
-         * Gets a text mesurements
+         * Gets mesurements of text
          * @param {type} text
          * @param {type} fontSize
          * @param {type} fontFamily

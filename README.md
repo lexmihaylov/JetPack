@@ -131,3 +131,29 @@ __Example:__
 ```javascript
 jPack.calc.pointOfCircle({x: 0, y: 0}, 100, 45) // => Object {x: 70.71067811865476, y: 70.71067811865474}
 ```
+
+#### jPack.calc.pointOfEllipse (point, radiusX, radiusY, angInDeg)
+
+Calculate a point of an ellipse
+ * `point` -  an object containing the circles centerPoint
+ * `radiusX` - the circles radius value on the X axis
+ * `radiusY` - the circles radius value on the Y axis
+ * `angInDeg` - value of offset angle in degrees
+
+__Example:__
+
+```javascript
+jPack.calc.pointOfEllipse({x: 0, y: 0}, 100, 50, 45) // => Object {x: 70.71067811865476, y: 35.35533905932737}
+```
+
+#### jPack.calc.distanceBetweenPoints (point1, point2)
+
+Calculates the distance between two points
+ * `point1`
+ * `point2`
+
+__Example:__
+
+```javascript
+jPack.calc.distanceBetweenPoints({x: 0, y: 0}, {x: 50, y: 100}) // => 50.00999900019995
+```
