@@ -8,7 +8,7 @@ JetPack is a compilation of methods that will make your life easyer. It includes
 
     bower install lexmihaylov/JetPack
     
-## Api documentation
+## API Documentation
 
 
  
