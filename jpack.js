@@ -90,6 +90,9 @@
          * @returns {Number}
          */
         random: function(min, max) {
+            min = min || 0;
+            max = max || 1;
+            
             return Math.random() * (max - min) + min;
         },
 
@@ -100,7 +103,7 @@
          * @returns {Number}
          */
         round: function(num, precision) {
-            if (!precision) precision = 0;
+            precision = precision || 0;
             var p = Math.pow(10, precision);
             return Math.round(num * p) / p;
         },
@@ -410,39 +413,6 @@
         destroy: function() {
             this.isDestroyed = true;
             this.isStarted = false;
-        }
-    };
-
-    /**
-     * Creates an async task using requestAnimationFrame or setTimeout
-     * @param {function} handler
-     * @class jpackAsync
-     * @constructor
-     */
-    jpack.Async = function(handler) {
-        this.asyncTask = win.requestAnimationFrame ||
-            win.mozRequestAnimationFrame ||
-            win.webkitRequestAnimationFrame ||
-            win.msRequestAnimationFrame ||
-            function(callback) {
-                return win.setTimeout(callback, 0);
-            };
-        this.handler = handler;
-    };
-
-    /**
-     * public methods
-     */
-    jpack.Async.prototype = {
-        /**
-         * Execute a task asyncroniously
-         * @returns {undefined}
-         */
-        start: function() {
-            var _this = this;
-            _this.asyncTask.call(win, function() {
-                _this.handler.apply(_this, arguments);
-            });
         }
     };
     
