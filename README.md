@@ -279,5 +279,5 @@ jPack.browser.cookie.get('my_cookie') // => null
 
 Creates an animation object using requestAnimationFrame or setTimeout
  * `constructor (handler)`
- * * `handler` - a callback that will be called on every draw event
+    * `handler` - a callback that will be called on every draw event
  * 
