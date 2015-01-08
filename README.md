@@ -157,3 +157,55 @@ __Example:__
 ```javascript
 jPack.calc.distanceBetweenPoints({x: 0, y: 0}, {x: 50, y: 100}) // => 50.00999900019995
 ```
+
+#### jPack.calc.pointInRectangle (point, rect)
+
+Determins if a point is contained inside a rectangle
+ * `point`
+ * `rect`
+
+__Example:__
+
+```javascript
+jPack.calc.pointInRectangle({
+    x: 120,
+    y: 120
+}, {
+    x: 50,
+    y: 100,
+    width: 100,
+    height: 100
+}) // => true
+```
+
+#### jPack.calc.pointInCircle (point, radius, centerPoint)
+
+Determins if a point is contained inside a circle
+ * `point`
+ * `radius`
+ * `centerPoint`
+
+__Example:__
+
+```javascript
+jPack.calc.pointInCircle({
+    x: 120,
+    y: 120
+}, 200, {
+    x: 50,
+    y: 100
+}) // => true
+```
+
+#### jPack.calc.measureText (text, fontSize, fontFamily)
+
+Gets mesurements of text
+ * `text` - the text string
+ * `fontSize` - the text size
+ * `fontFamily` - the font used
+
+__Example:__
+
+```javascript
+jPack.calc.measureText('Hello World', 20, 'Arial') // => TextMetrics {width: 51.6796875}
+```

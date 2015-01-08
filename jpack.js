@@ -212,7 +212,7 @@
         },
 
         /**
-         * Determins if a point is contained inside a rectabgle
+         * Determins if a point is contained inside a rectangle
          * @param {type} point
          * @param {type} rect
          * @returns {Boolean}
