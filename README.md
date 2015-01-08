@@ -2,7 +2,7 @@
 
 JetPack is a compilation of methods that will make your life easyer. It includes:
  * extension of the math api;
- * easy access to browser functionality;
+ * easy access to some of the browser's functionality;
  * Animation Class - requestAnimationFrame if available or a setTimeout fallback.
  
 
@@ -200,6 +200,9 @@ jPack.calc.pointInCircle({
 #### jPack.calc.measureText (text, fontSize, fontFamily)
 
 Gets mesurements of text
+
+_Note: this method uses a canvas to determin the text metrics_
+
  * `text` - the text string
  * `fontSize` - the text size
  * `fontFamily` - the font used
@@ -208,4 +211,26 @@ __Example:__
 
 ```javascript
 jPack.calc.measureText('Hello World', 20, 'Arial') // => TextMetrics {width: 51.6796875}
+```
+
+### jPack.browser
+
+#### jPack.browser.isMobile ()
+
+Returns `true` if the browser is mobile and `false` if it's not
+
+__Example:__
+
+```javascript
+jPack.browser.isMobile() // => false
+```
+
+#### jPack.browser.hasFlashEnabled ()
+
+Returns `true` if the browser has flash enabled and `false` if it doesn't have it enabled
+
+__Example:__
+
+```javascript
+jPack.browser.hasFlashEnabled() // => true
 ```
