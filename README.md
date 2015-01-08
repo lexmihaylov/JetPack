@@ -278,8 +278,21 @@ jPack.browser.cookie.get('my_cookie') // => null
 ####  jPack.Animation Class
 
 Creates an animation object using requestAnimationFrame or setTimeout
- * `constructor (handler)`
+ * `constructor(handler)`
     * `handler` - a callback that will be called on every draw event
- * `start ()` - Start the animation loop
- * `stop ()` - Stop/Pause animation loop
- * `destroy ()` - Destroy the animation loop
+ * `start()` - Start the animation loop
+ * `stop()` - Stop/Pause animation loop
+ * `destroy()` - Destroy the animation loop
+
+__Example:__
+
+```javascript
+var animation = new jPack.Animation(function() {
+    console.log('draw cycle');
+});
+
+animation.start();   // start animation loop
+animation.stop();    // pause animation loop
+animation.start();   // start the animation loop again
+animation.destroy(); // destroy animation loop
+```
