@@ -234,3 +234,50 @@ __Example:__
 ```javascript
 jPack.browser.hasFlashEnabled() // => true
 ```
+
+#### jPack.browser.cookie.set (name, value, opt)
+
+Create a cookie on the clients browser
+ * `name` - cookie name
+ * `value` - cookie value
+ * `opt` (optional) - cookie options
+
+__Example:__
+
+```javascript
+jPack.browser.cookie.set('my_cookie', 'my_cookie_val', {
+    expires: 60 * 60 * 24, // (optional) day in seconds
+    path: '/', // optional
+    domain: 'example.com' // optional
+})
+```
+
+#### jPack.browser.cookie.get (name)
+
+Gets the value of a cookie
+ * `name` - cookie name
+
+__Example:__
+
+```javascript
+jPack.browser.cookie.get('my_cookie') // => "my_cookie_val"
+```
+
+#### jPack.browser.cookie.destroy (name)
+
+Destroys a cookie
+ * `name` - cookie name
+
+__Example:__
+
+```javascript
+jPack.browser.cookie.destroy('my_cookie')
+jPack.browser.cookie.get('my_cookie') // => null
+```
+
+####  jPack.Animation Class
+
+Creates an animation object using requestAnimationFrame or setTimeout
+ * `constructor (handler)`
+ * * `handler` - a callback that will be called on every draw event
+ * 
